@@ -1,35 +1,48 @@
-//freeCodeCamp
+// --- Direction
+// Given a string, return the character that is most commonly usedd in the string
+// ---Example
+// maxChar("abccccccd") === "c"
+// maxChar("apple 1231111") === "1"
 
-// --Directions
-// Given a String, return true is the string is a plindrome or false if it is not. palindroms are strins that form the same word if it is revered
-
-// --Example
-// palindrome("kayak") === true
-// palindrome("madam") === true
-
-function palindrom1(word){
-    let reversed = ''
-    for(let char of word){
-        reversed = char + reversed
+function maxChar1(str){
+    const countObj = {}
+    for(let char of str){
+        countObj[char] = (countObj[char] + 1) || 1
     }
-    return reversed === word 
-}
-console.log(palindrom1('madam'))
 
-function palindrom2(word){
-    const reversed = word.split('').reverse().join('')
-    return reversed === word ? true : false
-}
-
-console.log(palindrom2("madam"))
-
-// Using every method
-function isPalindrome(word) {
-    return word.split('').every((char, index) => {
-        // Compare the character at the current index with its counterpart from the end
-        return char === word[word.length - index - 1];
-    });
+    let maxCount = 0;
+    let maxChar = ''
+    for(let key in countObj){
+        if(countObj[key] > maxCount){
+            maxCount = countObj[key]
+            maxChar = key
+        }
+    }
+    return maxChar
 }
 
-console.log(isPalindrome("madam")); // Output: true
-console.log(isPalindrome("hello")); // Output: false
+console.log(maxChar1('apple 1231111'))
+
+function maxChar(str){
+    const charMap = {}
+    for(let char of str){
+        if(charMap[char]){
+            charMap[char] = charMap[char] + 1
+        }else{
+            charMap[char] = 1
+        }
+    }
+
+    let max = 0;
+    let maxChar = ''
+    // older way to loop though object by converting object to array
+    for(const [key, value] of Object.entries(charMap)){
+        if(value > max){
+            max = value;
+            maxChar = key;
+        }
+    }
+    return maxChar;
+}
+
+console.log(maxChar('apple 1231111'))

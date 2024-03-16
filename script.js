@@ -1,61 +1,35 @@
 //freeCodeCamp
 
-// --- Directions
-// Given a string, return a reversed string with the reversed order of Charecter
-// --- Example
-// reverse('hi') === ih
-// reverse('hello') === 'olleh'
+// --Directions
+// Given a String, return true is the string is a plindrome or false if it is not. palindroms are strins that form the same word if it is revered
 
-function reverse1(str){
-    return str.split("").reverse().join("")
-}
+// --Example
+// palindrome("kayak") === true
+// palindrome("madam") === true
 
-//freecode camp
-
-//traditional way
-function reverse(str){
-    let reversed = ""
-
-    for(let i=0; i<str.length; i++){
-        reversed = str[i] + reversed
-    }
-
-    return reversed
-}
-console.log(reverse('yashas'))
-
-//using ES6
-function reverseStr(str){
-    let reversed = ""
-
-    for(let char of str){
-        reversed = char + reversed
-    }
-
-    return reversed
-}
-console.log(reverseStr('yashas'))
-
-// --- Directions 
-// Given an integer, return an integer that is the reverse
-// ordering of numbers
-// --- Examples
-// reverseInt(15) === 51
-
-function reversedInt(num){
-    let reversed = num.toString().split('').join('')
-    return parseInt(reversed) * Math.sign(num)
-}
-
-console.log(reversedInt(15))
-
-function reverseInt(num){
+function palindrom1(word){
     let reversed = ''
-    let numStr = num.toString()
-    for(let char of numStr){
+    for(let char of word){
         reversed = char + reversed
     }
-    return parseInt(reversed) * Math.sign(num)
+    return reversed === word 
+}
+console.log(palindrom1('madam'))
+
+function palindrom2(word){
+    const reversed = word.split('').reverse().join('')
+    return reversed === word ? true : false
 }
 
-console.log(reverseInt(-15))
+console.log(palindrom2("madam"))
+
+// Using every method
+function isPalindrome(word) {
+    return word.split('').every((char, index) => {
+        // Compare the character at the current index with its counterpart from the end
+        return char === word[word.length - index - 1];
+    });
+}
+
+console.log(isPalindrome("madam")); // Output: true
+console.log(isPalindrome("hello")); // Output: false

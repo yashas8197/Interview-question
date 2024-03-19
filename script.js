@@ -1,27 +1,22 @@
 // --- Direction
-// Write a program that console logs the numbers from 1 to n. But for multipy of 3, print "fizz" instead of number and for the multiplies of 5 print "buzz". For  numbers which are multiples of both 3 and 5 print "fizzbuzz".
-//--- Example
-// fizzbuzz(5);
-// 1
-// 2
-// fizz
-// 4
-// buzz
+// Write a function that accepts a positve number N. The function should console log a step shape with N level using the # charecter. Make sure the step has spaces on teh right hand side
+// --- Example
+// steps(2)
+// '#'
+// '##'
 
-function fizzBuzz(n) {
-  const fizzBuzzArr = [];
+//steps(3)
+// '#'
+// '##'
+// '###'
+
+function steps(n) {
+  let line = ""
   for (let i = 1; i <= n; i++) {
-    if(i % 3 === 0 && i % 5 === 0 ){
-      fizzBuzzArr.push("fizzbuzz")
-    }else if(i % 5 === 0){
-      fizzBuzzArr.push("buzz")
-    }else if(i % 3 === 0){
-      fizzBuzzArr.push("fizz")
-    }else{
-      fizzBuzzArr.push(i)
-    }
+    line += '#'
+    console.log(line)
   }
-  return fizzBuzzArr
+  
 }
 
-console.log(fizzBuzz(20));
+steps(4);

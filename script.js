@@ -1,22 +1,60 @@
-//Write a function that accepts the string. The function should capitalize the firat letter of each word in the string then return the capitalized string.
+// --- Directions
+// Write a function that returns the number of vowels used in a string. Vowels are the charecters 'a', 'e', 'i', 'o', 'u'.
 // ---Example
-// capitalize('this is yashas') ---> This Is Yashas
-// capitalize('title of the books, movies, songs') ---> 'Title Of The Books, Movies, Songs
+// vowels('Hi There!') ---> 3
+// vowels('How are you?') ---> 5
+// vowels('Coding Money') ---> 4
+// vowels('why?') ---> 0
 
-//using map
-const capitalize = (str) => str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1, word.length)).join(" ");
-
-console.log(capitalize('title of the books, movies, songs'))
-
-//using for of
-
-function capitalized(str){
-    const words = str.split(' ')
-    let result = []
-    for(let word of words){
-        result.push(word[0].toUpperCase() + word.slice(1))
+function vowels1(str) {
+  const vowel = ["a", "e", "i", "o", "u"];
+  let countVowels = 0;
+  let strArray = str.split("");
+  for (let i = 0; i < strArray.length; i++) {
+    for (let j = 0; j < vowel.length; j++) {
+      if (strArray[i] === vowel[j]) {
+        ++countVowels;
+      }
     }
-    return result.join(' ')
-} 
+  }
+  return countVowels;
+}
 
-console.log(capitalized('this is yashas'))
+console.log(vowels1("How are you?"));
+
+function vowels2(str) {
+  let strArray = str.toLowerCase().split("");
+
+  const filterVowelChar = strArray.filter(
+    (char) => char.includes("a") || char.includes("e") || char.includes('i') || char.includes('o') || char.includes('u')  
+  );
+  return filterVowelChar.length;
+}
+
+console.log(vowels2('I am yashas'));
+
+function vowels3(str) {
+  const vowel = ["a", "e", "i", "o", "u"];
+  let countVowels = 0;
+  let strArray = str.toLowerCase().split("");
+
+  const filterVowelChar = strArray.filter(
+    (char) => vowel.includes(char)  
+  );
+  return filterVowelChar.length;
+}
+
+console.log(vowels3('I am yashas'));
+
+function vowels4(str) {
+  const vowel = ["a", "e", "i", "o", "u"];
+  let count = 0;
+  let strArray = str.toLowerCase().split("");
+
+  for(let char of strArray){
+    if(vowel.includes(char)) count++
+  }
+  return count
+}
+
+console.log(vowels4('I am yashas'));

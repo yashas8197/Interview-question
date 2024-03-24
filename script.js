@@ -1,35 +1,86 @@
-// RoadSideCoder - array
-// Ques 1 - Second Largest number
-// Given an array of size N, print second largest distinct element from array
+// 1.  write a function that returns the reverse string
 
-// Input: [12,35,1,10,34,1] --> output: 34
-// Input: [10, 5, 10] --> output: 5
-
-function secondLargestNum(arr) {
-  let largest = Number.NEGATIVE_INFINITY;
-  let secondLargest = Number.NEGATIVE_INFINITY;
-
-  for (let i = 0; i < arr.length; i++) {  // Time Complextity: o(n) 
-    if (arr[i] > largest) {
-      secondLargest = largest;
-      largest = arr[i];
-    } else if (arr[i] != largest && arr[i] > secondLargest) {
-      secondLargest = arr[i];
-    }
+function reverseString(str) {
+  let reversedString = "";
+  for (let i = 0; i < str.length; i++) {
+    reversedString = str[i] + reversedString;
   }
-  return secondLargest;
+  return reversedString;
 }
 
-console.log(secondLargestNum([12, 31, 1, 34, 10, 1]));
-console.log(secondLargestNum([10, 5, 10]));
-// space Complextity: o(1)
+console.log(reverseString("yashas"));
+
+//2. write the function that returns the longest word in the sentence.
+
+function getLongestWord(str) {
+  let words = str.split(" ");
+  let longestWord = words[0];
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > longestWord.length) {
+      longestWord = words[i];
+    }
+  }
+  return longestWord;
+}
+
+console.log(getLongestWord("I am yashas"));
+
+// 3. write a function that check weather a given string is a plindrome or not.
+
+function checkPalindrome(str) {
+  let reversed = "";
+  for (let char of str) {
+    reversed = char + reversed;
+  }
+  return reversed === str;
+}
+
+console.log(checkPalindrome("mam"));
+
+// 4. write a function to remove duplicate elements from an array.
+
+function removeDuplicates(arr) {
+  let withoutDup = [];
+  arr.map((element) => {
+    if (!withoutDup.includes(element)) {
+      withoutDup.push(element);
+    }
+  });
+  return withoutDup;
+}
+
+console.log(removeDuplicates(["a", "a", "a", "b", "b", "d", "d", "c", "c"]));
+
+// 5. write a function to check if a given number is prime or not
+
+function checkPrimeNum(num) {
+  if (num < 2) {
+    return false;
+  }
+  for (let i = 2; i < num; i++) {
+    if(num % i === 0){
+      return false
+    }
+  }
+  return true
+}
+
+console.log(checkPrimeNum(11));
+
+// 6. write a program to remove all whitespaces charecter from a string.
+
+function removeWhitespace(str) {
+  let withoutSpace = ''
+  for(let char of str){
+    if(char !== " " && char !== "\t" && char !== "\n"){
+      withoutSpace += char
+    }
+  }
+  return withoutSpace;
+}
 
 
-// question 2 - Rotate Array by k
-// Given an integer array nums, rotate the array to the right by k steps, where k is non-negative
+console.log(removeWhitespace("Hello world")); // Expected: "Helloworld"
+console.log(removeWhitespace("  How are  you?  ")); // Expected: "Howareyou?"
+console.log(removeWhitespace("  Keep\t\t\tcalm\nand\n\tcode\t\t\t")); // Expected: "Keepcalmandcode"
 
-// Input: nums = [1,2,3,4,5,6,7], k = 3 ---->>>> output: [5,6,7,1,2,3,4]
-// Input: nums = [-1, -100, 3, 99], k = 2 ---->>>> output: [3,99,-1,-100]
-
-// Explanation - 
-// [1,2,3,4,5,6,7] -> [7,1,2,3,4,5,6] -> [6,7,1,2,3,4,5] -> [5,6,7,1,2,3,4]

@@ -1,17 +1,29 @@
-// 10 - Find the median of an array in javascript
+// 11. Find the unique element in an array
 
-let arr = [7, 4, 6, 9, 3, 8];
+const arr = [1,2,3,4,,4,5,3,2,1];
 
-arr.sort()
-
-let median;
-
-if(arr.length % 2 !== 0){
-  let medianIndex = Math.floor(arr.length / 2)
-  median = arr[medianIndex]
-}else{
-  let medianIndex = Math.floor(arr.length / 2)
-  median = (arr[medianIndex] + arr[medianIndex - 1]) / 2
+function lonelyinteger(arr){
+  const obj = arr.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] + 1) || 1
+    return acc;
+  }, {})
+  
+  for(let key in obj){
+    if(obj[key] === 1){
+      return key
+    }
+  }
 }
 
-console.log(median)
+console.log(lonelyinteger(arr))
+
+//using XOR
+function lonelyinteger1(arr){
+  let ans = 0;
+  for(let i=0; i<arr.length; i++){
+    ans = ans ^ arr[i]
+  }
+  return ans
+}
+
+console.log(lonelyinteger1([1,2,3,4,4,5,3,2,1]))

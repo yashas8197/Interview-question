@@ -1,60 +1,134 @@
-// Given an array of size N-1 such that it only contains distinct integers in the range of 1 to N. Find the missing element.
+// Easy 14 array problems
+
+// Problem statement: Given an array ‘arr’ of size ‘n’ find the largest element in the array.
 
 /* 
-Input:
-N = 5
-A[] = {1,2,3,5}
-Output: 4
- */
+Example:
+Input: 'n' = 5, 'arr' = [1, 2, 3, 4, 5]
+Output: 5 
+*/
 
-function findMissingNumber(arr, n) {
-  for (let i = 1; i <= n; i++) {
-    if (!arr.includes(i)) {
-      return i;
+function findLargestNum(arr, n) {
+  let largest = arr[0];
+  for (let i = 0; i < n; i++) {
+    if (arr[i] > largest) {
+      largest = arr[i];
+    }
+  }
+  return largest;
+}
+
+console.log(findLargestNum([1, 2, 3, 4, 5], 5));
+
+// Problem Statement: Given an array, find the second smallest and second largest element in the array. Print ‘-1’ in the event that either of them doesn’t exist.
+
+// Input: ‘n’ = 5, ‘a’ = [1, 2, 3, 4, 5]
+// Output: [4, 2]
+
+// The second largest element after 5 is 4, and the second smallest element after 1 is 2.
+
+function secondLargest(arr, n) {
+  let sLargest = -1;
+  let largest = arr[0];
+  for (let i = 0; i < n; i++) {
+    if (arr[i] > largest) {
+      sLargest = largest;
+      largest = arr[i];
+    } else if (arr[i] < largest && arr[i] > sLargest) {
+      sLargest = arr[i];
+    }
+  }
+  return sLargest;
+}
+
+function secondSmallest(arr, n) {
+  let smallest = arr[0];
+  let sSmallest = Number.POSITIVE_INFINITY;
+  for (let i = 0; i < n; i++) {
+    if (arr[i] < smallest) {
+      sSmallest = smallest;
+      smallest = arr[i];
+    } else if (arr[i] !== smallest && arr[i] < sSmallest) {
+      sSmallest = arr[i];
+    }
+  }
+  return sSmallest;
+}
+
+function secondLargestAndSmallest(arr, n) {
+  let sLargest = secondLargest(arr, n);
+  let sSmallest = secondSmallest(arr, n);
+
+  return [sLargest, sSmallest];
+}
+
+console.log(secondLargestAndSmallest([1, 2, 3, 4, 5], 5));
+
+// Problem Statement: Given an array of size n, write a program to check if the given array is sorted in (ascending / Increasing / Non-decreasing) order or not. If the array is sorted then return True, Else return False.
+// Note: Two consecutive equal values are considered to be sorted.
+
+/*
+Example 1:
+Input: N = 5, array[] = {1,2,3,4,5}
+Output: True. 
+*/
+
+/* function sortArray(arr, N) {
+  for (let i = 0; i < N; i++) {
+    if(arr[i] <= arr[i+1]){
+      return true;
+    }else{
+      return false;
     }
   }
 }
 
-console.log(findMissingNumber([6, 1, 2, 8, 3, 4, 7, 10, 5], 9));
+console.log(sortArray([1, 2, 3, 4, 5], 5)); */
 
-function findMissingNumber2(arr, n) {
-  // Calculate the sum of numbers from 1 to n
-  const expectedSum = (n * (n + 1)) / 2;
+// CHECK THE DIFFERENCE BETWEEN THE TWO IN ChatGPT
 
-  // Calculate the sum of numbers in the array
-  const actualSum = arr.reduce((acc, curr) => acc + curr, 0);
-
-  // The difference between the expected sum and the actual sum
-  // will be the missing number
-  return expectedSum - actualSum;
-}
-
-console.log(findMissingNumber2([6, 1, 2, 8, 3, 4, 7, 10, 5], 10));
-
-// Given an array a of size N which contains elements from 0 to N-1, you need to find all the elements occurring more than once in the given array. Return the answer in ascending order. If no such element is found, return list containing [-1].
-
-/* 
-Input:
-N = 5
-a[] = {2,3,1,2,3}
-Output: 
-2 3 
-Explanation: 
-2 and 3 occur more than once in the given array.
- */
-
-function duplicates(a, n) {
-  let duplits = []
-  const obj = a.reduce((acc, curr) => {
-    acc[curr] = (acc[curr] + 1) || 1
-    return acc;
-  },{})
-  
-  for(let key in obj){
-    if(obj[key] > 1){
-      duplits.push(key)
+function sortArray(arr, N) {
+  for (let i = 1; i < N; i++) {
+    if (arr[i] >= arr[i - 1]) {
+    } else {
+      return false;
     }
   }
-  return [duplits];
+  return true;
 }
-console.log(duplicates([2, 3, 1, 2, 3], 5));
+
+console.log(sortArray([1, 2, 3, 4, 5], 5));
+
+//Remove duplicates from sorted array
+// You are give a sorted integer arr of size N you need to remove the duplicates from the arr such that each element appears only once. return the length of this new array.
+
+//Input: N = 7; array[] = {1,1,2,2,2,3,3}
+
+function removeDuplicates(arr, N) {
+  let newArr = [];
+  for (let i = 0; i < N; i++) {
+    if (!newArr.includes(arr[i])) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr.length;
+}
+
+console.log(removeDuplicates([1, 1, 2, 2, 2, 3, 3], 7));
+
+// Remove duplicates in-place from sorted array
+// Example: arr[] = [1,1,2,2,2,3,3] -> [1,2,3,_, _, _ ....] -> return 3
+
+/* function removeDuplicates1(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 1; j < arr.length; j++) {
+      if (arr[i] !== arr[j]) {
+        newArr.push(arr[i]);
+      }
+    }
+  }
+  return newArr;
+}
+
+console.log(removeDuplicates1([1, 1, 2, 2, 2, 3, 3], 7)); */

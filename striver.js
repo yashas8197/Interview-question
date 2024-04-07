@@ -104,5 +104,27 @@ function isArmstrongNumber(num){
 
 console.log(isArmstrongNumber(407))
 
+// Problem Statement: Given a number, print all the divisors of the number. A divisor is a number that gives the remainder as zero when divided.
 
+/*
+Example 1:
+Input:
+ n = 36
+Output:
+ 1 2 3 4 6 9 12 18 36
+Explanation:
+ All the divisors of 36 are printed.
+ */
+
+function printAllDivisor(num){
+  for(let i=0; i<=num; i++){
+    if(num % i === 0){
+      console.log(i)
+    }
+  }
+}
+
+// Time complexsity is O(n)
+
+console.log(printAllDivisor(36))
 

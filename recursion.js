@@ -15,7 +15,7 @@ function printName(i, n){
 console.log(printName(1,5))
 
 
-// Print 1 to N using Recursion using recusion
+// Print 1 to N using Recursion using Recusion
 
 function print1toN(i,n){
     if(i>n){
@@ -39,7 +39,7 @@ function printNTo1(i,n){
 
 console.log(printNTo1(4,4))
 
-// print 1 to N without using recursion without i++
+// print 1 to N with using recursion without i++
 
 function incrementWithoutOperator(i,n){
     if(i < 1){
